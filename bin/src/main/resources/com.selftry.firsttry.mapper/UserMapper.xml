@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.selftry.firsttry.mapper.UserMapper">
+    <resultMap id="user" type="com.selftry.firsttry.entity.User">
+        <id column="userId" property="userId" javaType="int" jdbcType="INTEGER"/>
+        <result column="userAge" property="userAge" javaType="int" jdbcType="INTEGER"/>
+        <result column="userName" property="userName" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <parameterMap id="user1" type="com.selftry.firsttry.entity.User">
+        <parameter property="userName" resultMap="user"/>
+        <parameter property="userAge" resultMap="user"/>
+    </parameterMap>
+
+    <select id="findAllUsers" resultType="com.selftry.firsttry.entity.User">
+        select * from user
+    </select>
+
+    <select id="findUserById" parameterType="int" resultMap="user" resultType="com.selftry.firsttry.entity.User">
+        select * from user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="userId!=null">
+                userId = #{userId}
+            </if>
+        </trim>
+    </select>
+
+    <select id="findUserByName" parameterType="String" resultMap="user"  resultType="com.selftry.firsttry.entity.User">
+        select * from user
+        <trim prefix="WHERE" prefixOverrides="AND | OR">
+            <if test="userName!=null">
+                userName = #{userName}
+            </if>
+        </trim>
+    </select>
+
+    <update id="updateUser" parameterType="com.selftry.firsttry.entity.User">
+        update user set userName=#{userName}, userAge=#{userAge}
+        WHERE userId=#{userId}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where userId=#{userId}
+    </delete>
+
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="userId" parameterType="com.selftry.firsttry.entity.User">
+        insert into user (userId, userName, userAge) values
+            (#{userId}, #{userName}, #{userAge})
+    </insert>
+</mapper>
