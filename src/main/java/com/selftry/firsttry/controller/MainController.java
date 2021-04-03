@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Controller
 @EnableWebMvc
 public class MainController extends WebMvcConfigurerAdapter {
-
+//TODO does not work now, fix it
     @GetMapping("/")
     public ModelAndView root() {
         return new ModelAndView("index");
