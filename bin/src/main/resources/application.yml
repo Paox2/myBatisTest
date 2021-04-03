@@ -1,6 +1,15 @@
 mybatis:
-  type-aliases-package: com.selftry.firsttry.model
-  spring:
-    # 禁用掉模板缓冲，可实时监控更改
-    thymeleaf:
-      cache: falfe
+  mapper-locations: classpath*:mapper/*Mapper.xml
+spring:
+  thymeleaf:
+    prefix: classpth:/templates/
+    check-template-location: true
+    cache: true
+    suffix: .html
+    encoding: UTF-8
+    mode: HTML5
+  datasource:
+    url: jdbc:mysql://localhost:3306/selftry
+    username: root
+    password: Password1
+    driver-class-name: com.mysql.jdbc.Driver

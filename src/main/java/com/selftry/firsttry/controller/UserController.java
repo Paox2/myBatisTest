@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/userOperation")
 @Api(value = "user-controller", description = "user related class", tags = {"user"})
 @SwaggerDefinition(info = @Info(title="firsttest", version="1.0", description = "Wendi"))
 public class UserController {
