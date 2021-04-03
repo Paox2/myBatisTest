@@ -58,5 +58,13 @@
         >
             <property name="modelOnly" value="false" />
         </table>
+        <table  tableName="Account"
+                enableCountByExample="false"
+                enableDeleteByExample="false"
+                enableSelectByExample="true"
+                enableUpdateByExample="false"
+        >
+            <property name="modelOnly" value="false" />
+        </table>
     </context>
 </generatorConfiguration>

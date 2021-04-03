@@ -13,11 +13,14 @@ public class User implements Serializable {
     private Integer userAge;
     @ApiModelProperty(name="userId", value="user id", required = true)
     private Integer userId;
+    @ApiModelProperty(name="role", value="user role", required = true)
+    private String role;
 
-    public User(String userName, Integer userAge, Integer userId) {
+    public User(String userName, Integer userAge, Integer userId, String role) {
         this.userName = userName;
         this.userAge = userAge;
         this.userId = userId;
+        this.role = role;
     }
 
     public User() {
@@ -48,12 +51,21 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "userName='" + userName + '\'' +
                 ", userAge=" + userAge +
                 ", userId=" + userId +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

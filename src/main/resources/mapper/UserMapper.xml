@@ -8,10 +8,11 @@
         <id column="userId" property="userId" javaType="int" jdbcType="INTEGER"/>
         <result column="userAge" property="userAge" javaType="int" jdbcType="INTEGER"/>
         <result column="userName" property="userName" javaType="String" jdbcType="VARCHAR"/>
+        <result column="role" property="role" javaType="String" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="baseColumnList">
-        userId, userName, userAge
+        userId, userName, userAge, role
     </sql>
 
     <!-- select user by id/age/name/all or all the user -->
@@ -29,6 +30,9 @@
             <if test="userAge != null">
                 AND userAge = #{userAge, jdbcType=INTEGER}
             </if>
+            <if test="role != null">
+                AND role = #{role, jdbcType=VARCHAR}
+            </if>
         </trim>
     </select>
 
@@ -40,11 +44,17 @@
     <update id="updateUserByPrimaryKey" parameterType="com.selftry.firsttry.entity.User">
         update user
         <set>
+            <if test="userId != null">
+                userAge=#{userId, jdbcType=INTEGER},
+            </if>
             <if test="userName != null">
                 userName=#{userName, jdbcType=VARCHAR},
             </if>
             <if test="userAge != null">
                 userAge=#{userAge, jdbcType=INTEGER},
+            </if>
+            <if test="role != null">
+                role=#{role, jdbcType=VARCHAR},
             </if>
         </set>
         where userId = #{userId, jdbcType=INTEGER}
@@ -62,6 +72,9 @@
             <if test="userAge != null">
                 userAge,
             </if>
+            <if test="role != null">
+                role,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="userId != null">
@@ -72,6 +85,9 @@
             </if>
             <if test="userAge != null">
                 #{userAge, jdbcType=INTEGER},
+            </if>
+            <if test="role != null">
+                #{role, jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
