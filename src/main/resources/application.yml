@@ -2,7 +2,7 @@ mybatis:
   mapper-locations: classpath*:mapper/*Mapper.xml
 spring:
   thymeleaf:
-    prefix: classpth:/templates/
+    prefix: classpath:/templates/
     check-template-location: true
     cache: true
     suffix: .html
